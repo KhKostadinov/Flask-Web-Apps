@@ -1,0 +1,11 @@
+
+
+.content-section {
+	margin: auto;
+	width: 40%;
+	background: #ffffff;
+	text-align: left;
+	padding: 10px 20px;
+	border: 1px solid #dddddd;
+	border-radius: 3px;
+  }
