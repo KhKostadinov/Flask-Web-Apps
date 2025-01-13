@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="background-color: rgb(243, 243, 243); border: 1px solid; border-radius: 3px; border-color: darkgrey;">
+        <div class="col-1" style="border-right: 1px solid; border-color: darkgrey;">{{ project.id }}</div>
+        <div class="col-8" style="border-right: 1px solid; border-color: darkgrey;">{{ project.name }}</div>
+        <div class="col-3">{{ project.status }}</div>
+    </div>
+    <div class="row" style="margin-top: 2px; border: 1px solid; border-radius: 3px; background-color: rgb(243, 243, 243); border-color: darkgrey;">
+        <div class="col-9">{{ project.description|safe}}</div>
+            <div class="col-3" style="border-left: 1px solid; border-color: darkgrey;">
+                {% block tasks %} {% endblock %}
+            </div>
+        </div>
+        <a class="btn btn-sm btn-dark" href="{{ url_for('project_routes.edit',project_id=project.id) }}" role="button" style="margin-top: 2px;">Edit Project</a>
+    </div>
+</div>
+
+{% endblock %}

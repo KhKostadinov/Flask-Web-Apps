@@ -1,0 +1,165 @@
+{% extends 'project.html' %}
+
+{% block tasks %}
+<div class="accordion" id="accordionPanelsStayOpenExample" style="margin-top: 7px; margin-bottom: 7px;">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        Incomplete tasks
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+		<div class="accordion-body">
+        	{% if incomplete %}
+			  {% for task in incomplete %}
+              	<div style="text-align: center;">
+					<span><a href="{{ url_for('task_routes.edit',task_id=task.id) }}">{{ task.title }}</a> | {{ task.status }} | {{ task.due_date }}</span>
+					<hr style="margin-top: 3px; margin-bottom: 5px;" />
+				</div>
+			  {% endfor %}
+			{% else %}
+				<div style="text-align: center;">
+					<span style="font-weight: bold;">No tasks here!</span>
+			  	</div>
+			{% endif %}
+			<a href="{{ url_for('task_routes.add',project_id=project.id) }}" role="button" class="btn btn-sm btn-outline-dark" style="margin-top: 8px; margin-bottom: 0px;">ADD NEW TASK</a>
+		</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-heading4">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+        Assign teammates
+      </button>
+    </h2>
+
+    <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading4">
+      <div class="accordion-body">
+		<form action="{{ url_for('resource_routes.assign',project_id=project.id) }}" class="form" method="post">
+			<div class="input-group mb-3">
+				<select class="form-select form-select-sm" aria-label=".form-select-sm example" name="assigned">
+					<option selected>Select teammate</option>
+					{% for mate in team %}
+					  <option value="{{ mate.id }}">{{ mate.fname }}</option>
+					{% endfor %}
+				</select>
+				<button class="btn btn-outline-secondary" type="submit" id="button-addon2">Assign</button>
+			</div>
+		</form>
+
+		{% if assigned %}
+		  	{% for m in assigned %}
+			  <form action="{{ url_for('resource_routes.delete_assigned',assignment_id=m.id) }}" method="POST">  
+				
+					<span style="font-size: 16px; vertical-align: bottom; margin-right: 3px;">{{ m.assigned_teammate }}</span><input class="btn-close btn-sm" type="submit" value="" aria-label="Close" style="vertical-align: bottom;">
+					<hr style="margin-top: 3px;" />
+				</form>			  
+		  	{% endfor %}
+		{% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+        Resources
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+      <div class="accordion-body">
+
+{% if resources %}
+<table class="table table-hover table-bordered">
+  <thead>
+	<tr>
+		<th scope="col">Label</th>
+		<th scope="col">Link</th>
+		<th scope="col">Added on: </th>
+	</tr>
+  </thead>
+  <tbody>
+
+  {% for resource in resources %}
+	<tr>
+		<td>
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#resource{{ resource.id }}">
+			  {{ resource.label }}
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="resource{{ resource.id }}" tabindex="-1" aria-labelledby="resourceLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Edit resource details: </h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				  </div>
+				  <div class="modal-body">
+					<form action="{{ url_for('resource_routes.edit',resource_id=resource.id) }}" class="form" method="post">
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" placeholder="someplace" id="floatingInput" name="resourcelabel" value="{{ resource.label }}"/>
+							<label for="floatingInput">Edit resource label: </label>
+						</div>
+						<div class="form-floating">
+						  <textarea class="form-control" placeholder="someplace" name="resourcelink" id="floatingTextarea2" style="height: 80px">{{ resource.content }}</textarea>
+						  <label for="floatingTextarea2">Edit link to resource: </label>
+						</div>
+							<input type="submit" value="Save changes" class="btn btn-outline-dark">
+							<a href="{{ url_for('project_routes.project',project_id=project.id) }}" class="btn btn-outline-dark" role="button">Cancel</a>
+					</form>
+					<form action="{{ url_for('resource_routes.delete_resource',resource_id=resource.id) }}" method="POST">
+						<input class="btn btn-danger" type="submit" value="Delete Resource">
+					</form>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</td>
+		<td><a href="{{ resource.content }}" target="_blank">Open Folder</a></td>
+		<td>{{ resource.date_added }}</td>
+	</tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+	<div style="text-align: center;">
+		<span style="font-weight: bold;">No resources added!</span>
+  	</div>
+{% endif %}
+<a href="{{ url_for('resource_routes.add_res',project_id=project.id) }}" role="button" class="btn btn-sm btn-outline-dark" style="margin-top: 8px; margin-bottom: 0px;">ADD RESOURCE</a>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-heading3">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse3" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+        Complete tasks
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapse3" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-heading3">
+      <div class="accordion-body">
+			{% if complete %}
+			  {% for task in complete %}
+              	<div style="text-align: center;">
+					<span><a href="{{ url_for('task_routes.edit',task_id=task.id) }}">{{ task.title }}</a> | {{ task.status }} | {{ task.due_date }}</span>
+					<hr style="margin-top: 3px; margin-bottom: 5px;" />
+				</div>
+			  {% endfor %}
+			{% else %}	
+				<div style="text-align: center;">
+					<span style="font-weight: bold;">No tasks here!</span>
+			  	</div>
+			{% endif %}
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+{% endblock %}

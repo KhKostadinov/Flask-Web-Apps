@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div>
+    <script src="{{ url_for('static',filename='cke/ckeditor.js') }}"></script>
+    <form action="" class="form" method="post">
+        <div class="form-floating mb-3">
+            {% if project %}
+                <input type="text" class="form-control" placeholder="someplace" id="floatingInput" name="projectname" value="{{ project.name }}" />
+            {% else %}
+                <input type="text" class="form-control" placeholder="someplace" id="floatingInput" name="projectname" />
+            {% endif %}
+            <label for="floatingInput">Project title</label>
+        </div>
+
+        <div class="form-floating">
+            {% if project %}
+                <textarea class="form-control" placeholder="Add project description here" name="projectdescription" id="editor" style="height: 100px;">{{ project.description }}</textarea>
+            {% else %}
+                <textarea class="form-control" placeholder="Add project description here" name="projectdescription" id="editor" style="height: 100px"></textarea>
+            {% endif %}
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+
+        </div>
+        <div class="btn-group" role="group" aria-label="Bottom buttons" style="margin-top: 4px;">
+            <select class="form-select btn-outline-secondary" aria-label="Status select" name="projectstatus" style="margin-right: 1px;">
+                {% if project %}
+                    <option selected>{{ project.status }}</option>
+                    <option value="Draft">Draft</option>
+                    <option value="Live">Live</option>
+                    <option value="Closed">Closed</option>
+                {% else %}
+                    <option selected>Draft</option>
+                    <option value="Live">Live</option>
+                    <option value="Closed">Closed</option>
+                {% endif %}
+            </select>
+
+
+            <select class="form-select btn-outline-secondary" aria-label="Teammate select" name="teammate" style="margin-right: 2px;">
+                {% for mate in team %}
+                <option value="{{ mate.id }}">{{ mate.fname }}</option>
+                {% endfor %}
+            </select>
+            {% if project %}
+                <input type="submit" value="Save changes" class="btn btn-outline-secondary" style="margin-right: 2px;">
+                <a type="button" href="{{ url_for('project_routes.project', project_id=project.id) }}" class="btn btn-outline-secondary" style="border-radius: 4px;">Cancel</a>
+            {% else %}
+                <input type="submit" value="Add project" class="btn btn-outline-secondary" style="margin-right: 2px; border-radius: 4px;">
+                <a type="button" href="{{ url_for('project_routes.index') }}" class="btn btn-outline-secondary" style="border-radius: 4px;">Cancel</a>
+            {% endif %}
+            
+        </div>
+    </form>
+</div>
+
+{% endblock %}

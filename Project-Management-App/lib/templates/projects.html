@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+<div class="d-flex justify-content-center" style="margin-bottom: 5px;">
+  <form action="{{ url_for('project_routes.index') }}" class="form" method="post" >
+    <div class="input-group">
+      <div class="form-outline">
+        <input type="search" class="form-control" name="search" style="width: 500px;"/>
+      </div>
+      <button type="submit" class="btn btn-dark" style="border-radius: 4px;" >Search</button>
+    </div>
+  </form>
+</div>
+
+
+{% if projects %}
+<div style="background-color: rgb(243, 243, 243);">
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">Project name</th>
+            <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for project in projects %}
+
+        <tr>
+            <td>{{ project.id }}</td>
+            <td><a type="button" href="{{ url_for('project_routes.project', project_id=project.id) }}">{{ project.name }}</a></td>
+            <td>{{ project.status }}</td>
+        </tr>
+
+      {% endfor %}
+      </tbody>
+    </table>
+
+</div>
+{% else %}
+  <span> No projects added so far.</span>
+{% endif %}
+
+
+{% endblock %}
