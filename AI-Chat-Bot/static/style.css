@@ -1,1 +1,175 @@
+#lText {
+    color: rgb(179, 202, 185);
+    font-family: 'Poppins', sans-serif;          /* ➜ modern, clean typeface */
+    font-weight: 400;                            /* ➜ regular weight */
+    line-height: 1.6;
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    
+}
+
+
+.container {
+  width: 70%;
+  max-width: 800px;
+  min-height: 100vh;
+  margin: 0 auto;          /* horizontal centering of the container itself */
+  padding: 0px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical centering of children */
+  align-items: center;   /* <‑‑ left‑align every child */
+}
+
+/* • Font recommendation: “Poppins” (Google‑Font, weight 400 & 600) */
+.bot_text {
+  font-family: 'Poppins', sans-serif;  /* modern, cool font */
+  font-weight: 400;
+  line-height: 1.6;
+  margin-top: 0px;
+  margin-bottom: 10px;
+
+  text-align: left;           /* left‑justified text */
+  width: 60%;                /* full width inside the container */
+  padding: 0.4rem;              /* inner spacing */
+  border: 2px solid #bbb;     /* light gray border */
+  background: #fff;           /* white background for contrast */
+  color: #720303;                /* dark text for readability */
+  border-top: 0px;
+  border-right: 0px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 3px rgba(113, 17, 164, 0.15);
+  border-color: #b80a33;
+
+}
+
+.client_text {
+  font-family: 'Poppins', sans-serif;  /* modern, cool font */
+  font-weight: 400;
+  line-height: 1.6;
+  margin-top: 0px;
+  margin-bottom: 10px;
+
+  text-align: right;           
+  width: 60%;                /* full width inside the container */
+  padding: 0.4rem;              /* inner spacing */
+  border: 2px solid #bbb;     /* light gray border */
+  background: #fff;           /* white background for contrast */
+  color: #220ab8;                /* dark text for readability */
+  border-radius: 4px;
+  border-top: 0px;
+  border-left: 0px;
+  box-shadow: 0 0 0 3px rgba(83, 162, 246, 0.15);
+  border-color: #0f4ab7;
+}
+
+
+/* ── Google‑Font (Inter) ───────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* ── Form wrapper (keeps everything centered and nicely spaced) ───── */
+form {
+  width: 70%;                /* limit width for large screens */
+  margin: 0 auto;               /* center horizontally */
+  padding: 1rem;                /* inner spacing */
+  background: #ffffff;             /* light background */
+  border-radius: 8px;             /* rounded corners */
+  box-shadow: 0 6px 18px rgba(0,0,0,.08); /* subtle depth */
+  font-family: 'Inter', sans-serif;   /* modern sans‑serif */
+  color: #333333;
+  display: flex;
+  flex-direction: row;
+  gap: 0.8rem;                    /* space between rows */
+}
+
+
+/* ── Text input (search‑style, full width) ─────────────────────── */
+form input[type="text"] {
+  width: 80%;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  background: #fafafa;
+  transition: all 0.2s ease-in-out;
+}
+
+form input[type="text"]:focus {
+  outline: none;
+  border-color: #4f46e5;          /* brand-ish purple */
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(79,70,229,.15);
+}
+
+/* ── Submit button ─────────────────────────────────────────────── */
+form input[type="submit"] {
+    width: 20%;
+  padding: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #4f46e5;            /* same purple as focus ring */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+  margin: auto; 
+}
+
+form input[type="submit"]:hover {
+  background: #4338ca;            /* slightly darker */
+  transform: translateY(-1px);
+}
+
+form input[type="submit"]:active {
+  transform: translateY(0);
+}
+
+
+/* 1️⃣  Global reset (optional, but helps keep things consistent) */
+h1 {
+  margin: 0;
+  padding: 0.4em 0;
+}
+
+/* 2️⃣  The “cool” look ----------------------------------------------------- */
+h1 {
+  /* Font */
+  font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: center;
+
+  /* Gradient text */
+  background: linear-gradient(135deg, #ff6b6b, #f06595, #cc5de8, #845ef7);
+  -webkit-background-clip: text; /* Safari */
+  background-clip: text;
+  color: transparent;   /* hide the fallback text color */
+
+  /* Drop shadow for depth */
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  /* Subtle glow (optional) */
+  position: relative;
+}
+
+
+/* ── Responsive tweak: smaller padding on mobile ── */
+@media (max-width: 600px) {
+  .bot_text {
+    padding: 0.75rem;
+  }
+  .client_text {
+    padding: 0.75rem;
+  }
+   h1 {
+    font-size: 2.2rem;
+  }
+}
+
 
