@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css')}}" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>PyMonkey Chat Bot</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hello, I am Kevin and I work for Omega CyberSec. How can I help?</h1>
+    {% for item in convo %}
+        {% if item.type == 'client' %}
+            <label for="cText" id="lText">Client:</label>
+            <p class="client_text" id="cText">{{ item.content }}</p>
+        {% elif item.type == 'bot' %}
+            <label for="bText" id="lText">Kevin:</label>
+            <p class="bot_text" id="bText">{{ item.content }}</p>
+        {% endif %}
+    {% endfor %}
+
+
+    <form action="{{ url_for('index') }}" method="post">
+        <input type="text" id="txtInput" name="textInput" placeholder="Your question?"/>
+        <input type="submit" value="ask me">
+    </form>
+
+</div>
+
+</body>
+</html>
 
