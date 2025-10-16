@@ -1,0 +1,59 @@
+2025-10-14 22:40:16,670 - INFO - Check status: 
+2025-10-14 22:40:16,673 - ERROR - 
+Errors in punching status: 
+   record_id  status                             err_detailed
+3          4       0  Accepted values: 1/2, recorded value: 0
+
+2025-10-14 22:40:16,675 - INFO - Q1 term point: 
+2025-10-14 22:40:16,676 - ERROR - 
+Age out of allowed range
+    record_id  status   q1   err                       err_detailed
+23         24       1  102  True  Out of age range but not screened
+
+2025-10-14 22:40:16,678 - INFO - Q3 term point: 
+2025-10-14 22:40:16,680 - ERROR - 
+NotA selected but not screened:
+   record_id  status  Q3_0_99   err                          err_detailed
+7          8       1      1.0  True  None selected at Q3 but not screened
+
+2025-10-14 22:40:16,681 - INFO - #==================== CHECK OF QUALIFYING RESPONDENTS ====================#
+2025-10-14 22:40:16,681 - INFO - Q1 
+2025-10-14 22:40:16,683 - ERROR - 
+Age out of allowed range
+    record_id  status   q1   err      err_detailed
+23         24       1  102  True  Out of age range
+
+2025-10-14 22:40:16,684 - INFO - Q2 
+2025-10-14 22:40:16,686 - ERROR - 
+Code not allowed
+    record_id  status    q2   err                   err_detailed
+9          10       1  16.0  True  Code not allowed/missing data
+13         14       1   NaN  True  Code not allowed/missing data
+
+2025-10-14 22:40:16,697 - INFO - Q3 
+2025-10-14 22:40:16,699 - ERROR - 
+Multiple choice errors
+    record_id  status  cnt1  cnt2  Q3_0_99   err        err_detailed
+7           8       1     2     8      1.0  True  Exclusive selected
+31         32       1     0     8      0.0  True          0 selected
+35         36       1     0     8      0.0  True          0 selected
+
+2025-10-14 22:40:16,701 - INFO - Q3 OE
+2025-10-14 22:40:16,703 - ERROR - 
+Semi-OE errors
+    record_id  status  Q3_0_7   Q3_1   err  err_detailed
+8           9       1     1.0   None  True  Missing data
+17         18       1     0.0  dgfsg  True    Extra data
+27         28       1     1.0   None  True  Missing data
+
+2025-10-14 22:40:16,714 - INFO - Q3_2
+2025-10-14 22:40:16,716 - ERROR - 
+Q3_2 masked
+    record_id  status   err  Q3_0_6  Q3_0_7  Q3_2_6  Q3_2_7            err_detailed
+7           8       1  True     0.0     0.0     NaN     NaN    Extra data at Q3_2_2
+10         11       1  True     1.0     0.0     6.0     NaN  Missing data at Q3_2_4
+13         14       1  True     1.0     0.0     8.0     NaN  Missing data at Q3_2_1
+22         23       1  True     0.0     0.0     NaN     NaN    Extra data at Q3_2_1
+31         32       1  True     0.0     0.0     NaN     NaN    Extra data at Q3_2_4
+35         36       1  True     0.0     0.0     NaN     NaN    Extra data at Q3_2_1
+
