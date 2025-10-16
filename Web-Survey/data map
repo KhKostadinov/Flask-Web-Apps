@@ -1,0 +1,8 @@
+record_data positioning:
+
+[0] = status
+[1] = age
+[2] = q2 radio
+[3:11] = q3 multi
+[11] = q3.1 oe
+[12:19] = q3.2 grid

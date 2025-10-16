@@ -1,0 +1,43 @@
+<qre>
+	<question id="Q1" type="numeric">Q1. What is your current age?
+	</question>
+
+	<question id="Q2" type="single">Q2. What is your monthly income?
+		<option id="1">1. Under 1000EUR</option>
+		<option id="2">2. 1001-1500EUR</option>
+		<option id="3">3. 1501-2000EUR</option>
+		<option id="4">4. 2001-2500EUR</option>
+		<option id="5">5. 2501-3000EUR</option>
+		<option id="6">6. 3001-3500EUR</option>
+		<option id="7">7. 3501-4000EUR</option>
+		<option id="8">8. 4001+ EUR</option>
+		<option id="99">99. Prefer not to answer</option>
+	</question>
+
+	<question id="Q3" type="multi">Q3. What activities do you like most?
+		<option id="1">Hiking</option>
+		<option id="2">Airsoft</option>
+		<option id="3">Reading</option>
+		<option id="4">Computer gaming</option>
+		<option id="5">Board gaming</option>
+		<option id="6">Watching movies</option>
+		<option id="7">Other</option>
+		<option id="99">None of the above</option>
+	</question>
+
+	<question id="Q3.1" type="string">Q3.1 What other activities do you like?
+		</question>
+
+	<question id="Q3.2" type="grid">Q3.2 On a scale 1 to 10, how would you rate the satisfaction of the activities you mentioned?
+		<option id="1" filter="Q3_1==1">Hiking</option>
+		<option id="2" filter="Q3_2==1">Airsoft</option>
+		<option id="3" filter="Q3_3==1">Reading</option>
+		<option id="4" filter="Q3_4==1">Computer gaming</option>
+		<option id="5" filter="Q3_5==1">Board gaming</option>
+		<option id="6" filter="Q3_6==1">Watching movies</option>
+		<option id="7" filter="Q3_7==1">Other</option>
+	</question>
+
+
+</qre>
+
