@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="q1">
+	<form action="/q1" method="POST">
+		<label for="q1">{{ q_text }}</label><br>
+		<input type="number" name="q1" style="margin-top: 10px; width: 60px;"/>
+		<input type="submit" value="Submit" style="margin-top: 10px; margin-bottom: 5px;"/>
+    </form>
+</div>
+
+    {% with messages1 = get_flashed_messages() %}
+        {% if messages1 %}
+            {% for message1 in messages1 %}
+                {{ message1 }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<br>
+<a role="button" class="btn btn-outline-dark" href="{{ url_for('home') }}" style="margin-bottom: 5%;">Return to home page.</a>
+{% endblock %}
