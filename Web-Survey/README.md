@@ -30,5 +30,6 @@ instead of programming extremely complex survey.
      called polars but the truth is in pandas... still. I have made some errors in the db on purpose to show how errors will be logged, all stored in **dv_reports/DP.log**.
      Use "uv run check_db_pandas.py" and you will get the log file.
 
-**N.B.: .venv was created and maintained by uv when initiating the project and adding dependencies to it. I have made just an empty placeholder folder with the same name to maintain
+**N.B.: .venv was created and maintained by uv when initiating the project and adding dependencies to it. I have made just an empty placeholder folder in the repo with the same name to maintain
 project structure the same as on my PC.**
+
