@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+
+<form action="/rag" method="post" enctype="multipart/form-data">
+    <div class="dropdown-wrapper">
+        <h1>Available files:</h1>
+        <select id="file-select" name="file">
+            {% if fNum == 0 %}
+                <option value="">-- 0 files available --</option>
+            {% else %}
+                <option value="">-- Select one --</option>
+                {% for file in all_files %}
+                    <option value={{ file }}>{{ file }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+    <div>
+        <label for="question">Your Question</label>
+        <textarea id="question" name="question" placeholder="Ask a question…"></textarea>
+    </div>
+    <div class="btn-group">
+        <button type="submit" class="submit-btn">Submit Question</button>
+    </div>
+</form>
+
+<!-- Placeholder for the RAG output -->
+<!-- div class="response" id="response" style="display:none;" -->
+
+{% if result %}
+    <div class="response" id="response">
+        <h2>Response</h2>
+        <p>{{ result }}</p>
+    </div>
+{% endif %}
+
+{% endblock content %}
